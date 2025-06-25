@@ -9,22 +9,20 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    
       "anchors": [
-      
         {
           "anchor": "Documentation",
           "icon": "book-open-cover",
             "pages": [
-        "index",
-        "quickstart",
-        "development"
-      ]
+                "index",
+                "quickstart",
+                "development"
+              ]
         },
         {
           "anchor": "API Reference",
-          "href": "https://docs.mailblock.de/api-reference/introduction",
-          "icon": "newspaper"
+          "icon": "newspaper",
+          "pages": "api-reference/endpoint/create"
         },
         {
           "anchor": "How-To-Guides",
