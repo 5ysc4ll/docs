@@ -64,8 +64,8 @@
           "icon": "book-open-cover"
         },
         {
-          "anchor": "Blog",
-          "href": "https://block-forge.de/blog",
+          "anchor": "API Reference",
+          "href": "https://docs.mailblock.de/api-reference/introduction",
           "icon": "newspaper"
         }
       ]
