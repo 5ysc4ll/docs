@@ -13,16 +13,16 @@
         {
           "anchor": "Documentation",
           "icon": "book-open-cover",
-            "pages": [
+          "pages": [
                 "index",
                 "quickstart",
                 "development"
-              ]
+          ]
         },
         {
           "anchor": "API Reference",
           "icon": "newspaper",
-          "pages": "api-reference/endpoint/create"
+          "pages": ["api-reference/endpoint/create"]
         },
         {
           "anchor": "How-To-Guides",
