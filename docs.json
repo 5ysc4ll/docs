@@ -40,8 +40,12 @@
       
         {
           "anchor": "Documentation",
-          "href": "https://docs.mailblock.de",
-          "icon": "book-open-cover"
+          "icon": "book-open-cover",
+            "pages": [
+        "index",
+        "quickstart",
+        "development"
+      ]
         },
         {
           "anchor": "API Reference",
