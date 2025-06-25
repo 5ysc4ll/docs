@@ -35,7 +35,26 @@
         ]
       }
       
-    ]
+    ], "global": {
+      "anchors": [
+      
+        {
+          "anchor": "Documentation",
+          "href": "https://docs.mailblock.de",
+          "icon": "book-open-cover"
+        },
+        {
+          "anchor": "API Reference",
+          "href": "https://docs.mailblock.de/api-reference/introduction",
+          "icon": "newspaper"
+        },
+        {
+          "anchor": "How-To-Guides",
+          "href": "https://docs.mailblock.de/api-reference/introduction",
+          "icon": "newspaper"
+        }
+      ]
+    }
    
    
   },
