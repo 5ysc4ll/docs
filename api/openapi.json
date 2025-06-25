@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://mailblock.de/api",
+      "url": "https://mailblock.de",
       "description": "Production server"
     }
   ],
