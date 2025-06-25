@@ -22,7 +22,7 @@
         {
           "anchor": "API Reference",
           "icon": "newspaper",
-          "pages": ["api/endpoint/create"]
+          "pages": ["api-reference/endpoint/create"]
         },
         {
           "anchor": "How-To-Guides",
