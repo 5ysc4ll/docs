@@ -24,6 +24,7 @@
           {
             "group": "Essentials",
             "pages": [
+              "essentials/custom",
               "essentials/markdown",
               "essentials/code",
               "essentials/images",
