@@ -26,8 +26,8 @@
         },
         {
           "anchor": "How-To-Guides",
-          "icon": "newspaper",
-          "pages": ["essentials/code"]
+          "icon": "newspaper"
+       
         }
       ]
     
