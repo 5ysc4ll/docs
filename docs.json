@@ -35,7 +35,7 @@
         ]
       }
       
-    ], "global": {
+    ], 
       "anchors": [
       
         {
@@ -54,7 +54,7 @@
           "icon": "newspaper"
         }
       ]
-    }
+    
    
    
   },
