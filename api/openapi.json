@@ -127,25 +127,6 @@
         "summary": "Delete API key",
         "description": "Delete an API key for the authenticated user",
         "tags": ["API Keys"],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["id"],
-                "properties": {
-                  "id": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "ID of the API key to delete",
-                    "example": "123e4567-e89b-12d3-a456-426614174000"
-                  }
-                }
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "API key deleted successfully",
