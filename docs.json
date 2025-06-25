@@ -9,6 +9,7 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
+    
       "anchors": [
         {
           "anchor": "Documentation",
@@ -22,7 +23,12 @@
         {
           "anchor": "API Reference",
           "icon": "newspaper",
-          "pages": ["api-reference/endpoint/create"]
+          "navigation": [
+      {
+        "group": "API reference",
+        "openapi": "openapi.json"
+      }
+  ]
         },
         {
           "anchor": "How-To-Guides",
