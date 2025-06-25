@@ -36,8 +36,10 @@
       }
       
     ],
+   
     "global": {
       "anchors": [
+      
         {
           "anchor": "Documentation",
           "href": "https://docs.mailblock.de",
