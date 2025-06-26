@@ -17,17 +17,16 @@
           "pages": [
                 "index",
                 "quickstart",
-                "development"
+                "development",
+                "essentials/custom"
           ]
         },
-    
         {
           "anchor": "How-To-Guides",
           "icon": "newspaper",
           "pages": [
             "essentials/code", "essentials/markdown"
           ]
-       
         }
       ]
   },
