@@ -16,6 +16,7 @@
           "icon": "book-open-cover",
           "pages": [
                 "index",
+                "basic-setup",
                 "quickstart"
           ]
         },
