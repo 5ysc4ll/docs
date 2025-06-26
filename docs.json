@@ -28,6 +28,13 @@
               "how-to/godaddy",
               "how-to/buy-domain"
           ]
+        },
+        {
+          "anchor": "API-Reference",
+          "icon": "code",
+          "pages": [
+            "index"
+          ]
         }
       ]
   },
