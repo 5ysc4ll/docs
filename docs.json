@@ -26,14 +26,15 @@
           "pages": [
               "how-to/custom-domain",
               "how-to/godaddy",
-              "how-to/buy-domain"
+              "how-to/buy-domain",
+              "api-reference/api"
           ]
         },
         {
           "anchor": "API-Reference",
           "icon": "code",
           "pages": [
-            "index"
+              "index"
           ]
         }
       ]
