@@ -53,7 +53,7 @@
     "primary": {
       "type": "button",
       "label": "Get Started",
-      "href": "https://mailblock.de"
+      "href": "https://mailblock.de#beta"
     }
   },
   "footer": {
