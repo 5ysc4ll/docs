@@ -1,34 +1,167 @@
 ---
 title: "Prerequisites"
-description: "Prerequisites for the Getting Started"
+description: "Before you begin using the Mailblock SDK, you'll need to set up your account and obtain an API key."
 ---
 
-## Add your custom Domain
+## System Requirements
 
-Create an Account by Signing up: [Sign Up](https://www.mailblock.de/#beta)
+- **Node.js 14 or higher** - [Download from nodejs.org](https://nodejs.org/)
+- **npm or yarn package manager** (comes with Node.js)
+- **A Mailblock account** - Follow the setup guide below
 
-2 options for the cusomt domain
+## Setting Up Your Mailblock Account
 
-- buy onw and enter your credentials or
-- buy one of ours already configured and warmed up domains
+### Step 1: Create Your Account
 
-for more information on how  to do this: [Link](/how-to/custom-domain)
+Sign up for a Mailblock account to get started with our email service:
 
-Naviagte to the API Key tab
+👉 [**Sign Up for Mailblock**](https://www.mailblock.de/#beta)
+
+### Step 2: Configure Your Custom Domain
+
+To send emails, you need a verified domain. Mailblock offers two convenient options:
+
+#### Option A: Use Your Existing Domain
+
+- **Add your own domain** and configure the DNS settings
+- **Complete domain verification** process
+- **Set up email authentication** (DKIM, SPF, and DMARC records)
+- **Benefits**: Use your branded domain, full control
+- **Time**: 15-30 minutes setup \+ DNS propagation
+
+#### Option B: Purchase a Pre-configured Domain ⭐ Recommended
+
+- **Buy one of our pre-configured domains** that are already warmed up
+- **Ready to use immediately** with optimal deliverability rates
+- **No DNS configuration required** - everything is handled for you
+- **Benefits**: Instant setup, better deliverability, no technical hassle
+- **Time**: 2-3 minutes
+
+📚 **Need detailed setup instructions?**
+Check our comprehensive guide: [Custom Domain Configuration](/how-to/custom-domain)
+
+### Step 3: Generate Your API Key
+
+Once your domain is configured and verified:
+
+#### 1. Navigate to API Keys
+
+In your Mailblock dashboard, go to the API Keys section:
 
 <img
   src="/images/mockups/nav-mockup.png"
-  alt="Nav Mockup Pn"
-  title="Nav Mockup Pn"
+  alt="Navigation to API Keys section in Mailblock dashboard"
+  title="Navigate to API Keys"
+  style="width: 29%; margin: 20px auto; display: block; border: 1px solid #ddd; border-radius: 8px;"
   className="mx-auto"
-  style={{ width:"29%" }}
 />
 
-Create a new API Key and store it securely
+#### 2. Create Your API Key
+
+Click "Create New API Key" and give it a descriptive name (e.g., "Production API", "Development Key"):
 
 <img
   src="/images/mockups/api-key-mockup.png"
-  alt="Api Key Mockup Pn"
-  title="Api Key Mockup Pn"
-  className="mx-auto"
+  alt="API Key creation interface showing key generation"
+  title="Create API Key"
+  style="width: 80%; margin: 20px auto; display: block; border: 1px solid #ddd; border-radius: 8px;"
 />
+
+#### 3. Store Your API Key Securely
+
+⚠️ **Important Security Notes:**
+
+- **Copy your API key immediately** - it won't be shown again
+- **Store it in a secure location** (password manager, environment variables)
+- **Never commit API keys to version control** (git repositories)
+- **Use environment variables** for production applications
+- **Regenerate keys** if you suspect they've been compromised
+
+### Step 4: Verify Your Setup
+
+Before proceeding with the SDK, it's important to verify that everything is configured correctly:
+
+#### Use the Verify Domain Button
+
+Click the **"Verify Domain"** button in your dashboard to check if all settings are properly configured:
+
+<img
+  src="/images/mockups/verify.png"
+  alt="Domain verification interface showing verify button and status checks"
+  title="Verify Domain Setup"
+  style="width: 80%; margin: 20px auto; display: block; border: 1px solid #ddd; border-radius: 8px;"
+/>
+
+The verification process will check:
+
+✅ **Domain Status**: Should show "Verified" in your dashboard\
+✅ **DNS Records**: All authentication records should be "Active"\
+✅ **DKIM Configuration**: Proper email signing setup\
+✅ **SPF Record**: Sender authentication configured\
+✅ **DMARC Policy**: Email security policy in place\
+✅ **API Key**: Successfully created and stored securely\
+✅ **Sending Limits**: Check your current sending quota
+
+💡 **Tip**: If any checks fail, the verification tool will provide specific instructions on how to fix each issue.
+
+## Environment Setup Best Practices
+
+### For Development
+
+Create a `.env` file in your project root:
+
+```bash
+# .env file
+MAILBLOCK_API_KEY=your-api-key-here
+MAILBLOCK_FROM_EMAIL=noreply@yourdomain.com
+```
+
+### For Production
+
+Set environment variables on your hosting platform:
+
+```bash
+# Example for various platforms
+# Heroku, Vercel, Netlify, Railway, etc.
+MAILBLOCK_API_KEY=your-production-api-key
+MAILBLOCK_FROM_EMAIL=noreply@yourdomain.com
+```
+
+## Troubleshooting Common Issues
+
+### "Domain not verified" Error
+
+- **Check DNS records** - ensure all required records are added
+- **Wait for propagation** - DNS changes can take up to 24 hours
+- **Contact support** if verification fails after 24 hours
+
+### "Invalid API key" Error
+
+- **Double-check the key** - ensure no extra spaces or characters
+- **Verify key is active** - check dashboard for key status
+- **Regenerate if needed** - create a new key if the old one doesn't work
+
+### "Sending quota exceeded" Error
+
+- **Check your limits** in the dashboard
+- **Upgrade your plan** if you need higher limits
+- **Wait for quota reset** (usually monthly)
+
+## Next Steps
+
+Once you have completed the prerequisites:
+
+1. 📦 [**Install the SDK**](getting-started.md#installation)
+2. 🚀 [**Send your first email**](getting-started.md#sending-your-first-email)
+3. 📖 [**Explore the full API**](api-reference.md)
+
+## Need Help?
+
+- 📚 **Documentation**: [Full Getting Started Guide](getting-started.md)
+- 💬 **Support**: [GitHub Issues](https://github.com/your-org/mailblock-sdk/issues)
+- 📧 **Email**: [support@mailblock.de](mailto:support@mailblock.de)
+- 🌐 **Website**: [mailblock.de](https://www.mailblock.de)
+
+---
+
+**Ready to start sending emails?** Continue to the [Getting Started Guide](getting-started.md)
