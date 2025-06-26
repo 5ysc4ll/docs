@@ -29,6 +29,13 @@
               "how-to/buy-domain",
               "api-reference/api"
           ]
+        },
+         {
+          "anchor": "How-To-Guides",
+          "icon": "newspaper",
+          "pages": [
+              "api-reference/create"
+          ]
         }     
       ]
   },
