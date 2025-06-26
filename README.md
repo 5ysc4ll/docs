@@ -1,32 +1,80 @@
-# Mintlify Starter Kit
+# Mailblock SDK Documentation
 
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
+Welcome to the Mailblock SDK documentation! This directory contains comprehensive guides and references for using the Mailblock email SDK.
 
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+## 📚 Documentation Index
 
-### Development
+### [Getting Started](getting-started.md)
+Complete guide to get up and running with the Mailblock SDK in minutes. Covers installation, basic setup, and your first email.
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+**Topics covered:**
+- Installation & setup
+- Sending your first email
+- Method chaining API
+- HTML emails
+- Email scheduling
+- Environment configuration
+- Debug mode
+- TypeScript support
+- Error handling
+
+### [API Reference](api-reference.md)
+Complete technical reference for all SDK classes, methods, interfaces, and response formats.
+
+**Topics covered:**
+- Mailblock class constructor and methods
+- EmailBuilder chainable API
+- TypeScript interfaces
+- Response format specifications
+- Error types and handling
+- HTTP status codes
+- Debug logging
+- Rate limiting
+
+## 🚀 Quick Links
+
+**New to Mailblock?** Start with [Getting Started](getting-started.md)
+
+**Need specific method details?** Check the [API Reference](api-reference.md)
+
+**Looking for examples?** Both guides include plenty of code examples
+
+## 📖 Documentation Structure
 
 ```
-npm i -g mintlify
+docs/
+├── README.md           # This file - documentation index
+├── getting-started.md  # Complete getting started guide
+└── api-reference.md    # Technical API reference
 ```
 
-Run the following command at the root of your documentation (where docs.json is)
+## 🔗 Additional Resources
 
-```
-mintlify dev
-```
+- **Main README**: [`../README.md`](../README.md) - Project overview
+- **Quick Start**: [`../QUICKSTART.md`](../QUICKSTART.md) - 2-minute setup guide
+- **Package Info**: [`../package.json`](../package.json) - SDK version and dependencies
+- **TypeScript Types**: [`../index.d.ts`](../index.d.ts) - Type definitions
 
-### Publishing Changes
+## 💡 Tips for Using This Documentation
 
-Install our Github App to auto propagate changes from your repo to your deployment. Changes will be deployed to production automatically after pushing to the default branch. Find the link to install on your dashboard. 
+1. **Start with Getting Started** if you're new to the SDK
+2. **Bookmark the API Reference** for quick method lookups
+3. **Copy-paste the examples** - they're all ready to use
+4. **Enable debug mode** during development for better insights
+5. **Check error types** in responses for better error handling
 
-#### Troubleshooting
+## 🐛 Found an Issue?
 
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with `docs.json`
+If you find any issues with the documentation:
+
+- 📝 [Open an issue](https://github.com/your-org/mailblock-sdk/issues)
+- 📧 Email: support@yourdomain.com
+- 💬 Include the specific documentation section and what needs clarification
+
+## 📄 License
+
+This documentation is part of the Mailblock SDK and is released under the same MIT license.
+
+---
+
+**Happy coding with Mailblock! 🚀**
