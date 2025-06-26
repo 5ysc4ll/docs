@@ -26,14 +26,14 @@
           "pages": [
               "how-to/custom-domain",
               "how-to/godaddy",
-              "how-to/buy-domain",
-              "api-reference/api"
+              "how-to/buy-domain"
           ]
         },
          {
           "anchor": "How-To-Guides",
           "icon": "newspaper",
           "pages": [
+              "api-reference/api",
               "api-reference/create"
           ]
         }     
