@@ -17,7 +17,8 @@
           "pages": [
                 "index",
                 "basic-setup",
-                "quickstart"
+                "quickstart",
+                "how-to/godaddy"
           ]
         },
         {
