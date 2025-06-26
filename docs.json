@@ -20,16 +20,7 @@
                 "development"
           ]
         },
-        {
-          "anchor": "API Reference",
-          "icon": "newspaper",
-          "navigation": [
-      {
-        "group": "API reference",
-        "openapi": "openapi.json"
-      }
-  ]
-        },
+    
         {
           "anchor": "How-To-Guides",
           "icon": "newspaper",
