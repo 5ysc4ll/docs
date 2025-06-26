@@ -24,7 +24,7 @@
           "anchor": "How-To-Guides",
           "icon": "newspaper",
           "pages": [
-              "basicsetup",
+              "basic-setup",
               "how-to/godaddy"
           ]
         }
