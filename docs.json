@@ -30,7 +30,7 @@
           ]
         },
          {
-          "anchor": "How-To-Guides",
+          "anchor": "API-Reference",
           "icon": "newspaper",
           "pages": [
               "api-reference/api",
