@@ -1,11 +1,11 @@
 {
   "$schema": "https://docs.mailblock.de/docs.json",
-  "theme": "willow",
+  "theme": "mint",
   "name": "Mailblock Documentation",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#027FFE",
+    "light": "#68B3FF",
+    "dark": "#0C3C6F"
   },
   "favicon": "/favicon-new.svg",
   "navigation": {
