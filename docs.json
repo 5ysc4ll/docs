@@ -32,7 +32,10 @@
         },
         {
           "anchor": "How-To-Guides",
-          "icon": "newspaper"
+          "icon": "newspaper",
+          "pages": [
+            "essentials/code", "essentials/markdown"
+          ]
        
         }
       ]
