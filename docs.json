@@ -24,6 +24,7 @@
           "anchor": "How-To-Guides",
           "icon": "newspaper",
           "pages": [
+              "how-to/custom-domain",
               "how-to/godaddy"
           ]
         }
