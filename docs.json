@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.mailblock.de/docs.json",
-  "theme": "mint",
+  "theme": "willow",
   "name": "Mailblock Documentation",
   "colors": {
     "primary": "#16A34A",
