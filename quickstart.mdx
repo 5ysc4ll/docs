@@ -24,14 +24,17 @@ yarn add mailblock
 
 ### Get an API Key
 
+first create a new API Key using the User Interface
+
 <img
   src="/images/mockups/nav-mockup.png"
   alt="Nav Mockup Pn"
   title="Nav Mockup Pn"
   style={{ width:"27%" }}
+  className="mx-auto"
 />
 
-![Api Key Mockup Pn](/images/mockups/api.key-mockup.png)
+![Api Key Mockup Pn](/images/mockups/api-key-mockup.png)
 
 ### Basic Setup
 
@@ -140,17 +143,6 @@ MAILBLOCK_API_KEY=your-api-key-here
 import Mailblock from 'mailblock';
 
 const client = new Mailblock(process.env.MAILBLOCK_API_KEY);
-```
-
-### Custom Base URL
-
-If you're using a custom Mailblock deployment:
-
-```javascript
-const client = new Mailblock(
-  'your-api-key',
-  'https://your-custom-mailblock-instance.com'
-);
 ```
 
 ### Debug Mode
