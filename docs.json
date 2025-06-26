@@ -32,7 +32,7 @@
         },
         {
           "anchor": "API-Reference",
-          "icon": "code",
+          "icon": "newspaper",
           "pages": [
               "how-to/custom-domain",
               "how-to/godaddy",
