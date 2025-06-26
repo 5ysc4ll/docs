@@ -34,7 +34,10 @@
           "anchor": "API-Reference",
           "icon": "code",
           "pages": [
-              "index"
+              "how-to/custom-domain",
+              "how-to/godaddy",
+              "how-to/buy-domain",
+              "api-reference/api"
           ]
         }
       ]
