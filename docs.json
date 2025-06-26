@@ -24,7 +24,6 @@
           "anchor": "How-To-Guides",
           "icon": "newspaper",
           "pages": [
-              "index",
               "how-to/custom-domain",
               "how-to/godaddy",
               "how-to/buy-domain"
@@ -34,7 +33,6 @@
           "anchor": "API-Reference",
           "icon": "newspaper",
           "pages": [
-              "index",
               "api-reference/api",
               "api-reference/create"
           ]
