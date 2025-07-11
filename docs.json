@@ -14,11 +14,23 @@
         {
           "anchor": "Documentation",
           "icon": "book-open-cover",
-          "pages": [
-                "index",
-                "basic-setup",
-                "quickstart"
-          ]
+          "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "play",
+            "pages": [
+              "index",
+              "basic-setup"
+            ]
+          },
+          {
+            "group": "Advanced",
+            "icon": "code",
+            "pages": [
+              "quickstart"
+            ]
+          }
+        ]
         },
         {
           "anchor": "How-To-Guides",
