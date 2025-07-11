@@ -24,7 +24,7 @@
             ]
           },
           {
-            "group": "Advanced",
+            "group": "SDKs",
             "icon": "code",
             "pages": [
               "quickstart"
@@ -45,16 +45,7 @@
               "how-to/buy-domain",
               "how-to/verification"
           ]
-        },
-         {
-          "anchor": "API-Reference",
-          "icon": "newspaper",
-          "pages": [
-              "api-reference/introduction",
-              "api-reference/api",
-              "api-reference/create"
-          ]
-        }     
+        }      
       ]
   },
   "logo": {
