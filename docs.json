@@ -50,7 +50,7 @@
             "pages": [
               "how-to/custom-domain",
               "how-to/mail-setup",
-              "/how-to/mailblock-domain"
+              "how-to/mailblock-domain"
             ]
           },
           {
