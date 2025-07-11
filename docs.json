@@ -35,15 +35,27 @@
         {
           "anchor": "How-To-Guides",
           "icon": "newspaper",
-          "pages": [
+          "groups": [
+          {
+            "group": "Overview",
+            "icon": "table",
+            "pages": [
               "how-to/introduction",
+              "how-to/verification"
+            ]
+          },
+          {
+            "group": "Domain Setups",
+            "icon": "globe",
+            "pages": [
               "how-to/custom-domain",
               "how-to/ionos",
               "how-to/godaddy",
               "how-to/strato",
               "how-to/namecheap",
-              "how-to/buy-domain",
-              "how-to/verification"
+              "how-to/buy-domain"
+            ]
+          }
           ]
         }      
       ]
