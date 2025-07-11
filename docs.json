@@ -49,11 +49,11 @@
             "icon": "globe",
             "pages": [
               "how-to/custom-domain",
+              "how-to/mail-setup",
               "how-to/ionos",
               "how-to/godaddy",
               "how-to/strato",
-              "how-to/namecheap",
-              "how-to/buy-domain"
+              "how-to/namecheap"
             ]
           }
           ]
