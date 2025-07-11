@@ -50,6 +50,13 @@
             "pages": [
               "how-to/custom-domain",
               "how-to/mail-setup",
+              "/how-to/mailblock-domain"
+            ]
+          },
+          {
+            "group": "3rd Party Vendors",
+            "icon": "cart",
+            "pages": [
               "how-to/ionos",
               "how-to/godaddy",
               "how-to/strato",
