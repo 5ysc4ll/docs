@@ -55,7 +55,7 @@
           },
           {
             "group": "3rd Party Vendors",
-            "icon": "shopping",
+            "icon": "globe",
             "pages": [
               "how-to/ionos",
               "how-to/godaddy",
