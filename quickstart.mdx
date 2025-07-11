@@ -138,23 +138,13 @@ import Mailblock from 'mailblock';
 const client = new Mailblock(process.env.MAILBLOCK_API_KEY);
 ```
 
-## Custom Base URL
-
-If you're using a custom Mailblock deployment:
-
-```javascript
-const client = new Mailblock(
-  'your-api-key',
-  'https://your-custom-mailblock-instance.com'
-);
-```
 
 ## Debug Mode
 
 Enable debug mode during development to see detailed logs:
 
 ```javascript
-const client = new Mailblock('your-api-key', undefined, { 
+const client = new Mailblock('your-api-key', { 
   debug: true 
 });
 
@@ -168,7 +158,6 @@ const result = await client.sendEmail({
 ```
 
 Debug logs include:
-
 - Request details and timing
 - API responses
 - Error information
