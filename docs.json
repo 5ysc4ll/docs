@@ -29,7 +29,9 @@
             "pages": [
               "SDK/overview",
               "quickstart",
-              "SDK/python"
+              "SDK/python",
+              "SDK/nextjs",
+              "SDK/hono"
             ]
           }
         ]
