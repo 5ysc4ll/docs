@@ -28,7 +28,7 @@
             "icon": "code",
             "pages": [
               "SDK/overview",
-              "SDK/quickstart",
+              "SDK/node",
               "SDK/python",
               "SDK/nextjs",
               "SDK/hono"
