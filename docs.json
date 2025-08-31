@@ -27,6 +27,7 @@
             "group": "SDKs",
             "icon": "code",
             "pages": [
+              "SDK/overview",
               "quickstart"
             ]
           }
