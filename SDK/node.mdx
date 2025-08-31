@@ -89,6 +89,34 @@ const result = await client.sendEmail({
 });
 ```
 
+## Sending to Multiple Recipients
+
+Send emails to multiple people with CC and BCC support:
+
+```javascript
+const result = await client.sendEmail({
+  to: ['user1@example.com', 'user2@example.com'],
+  cc: 'manager@example.com',
+  bcc: ['audit@example.com', 'admin@example.com'],
+  from: 'sender@yourdomain.com',
+  subject: 'Team Update',
+  text: 'This email goes to multiple recipients.'
+});
+```
+
+You can also use method chaining with multiple recipients:
+
+```javascript
+const result = await client.email()
+  .to(['primary@example.com', 'secondary@example.com'])
+  .cc('supervisor@example.com')
+  .bcc(['audit@example.com'])
+  .from('system@yourdomain.com')
+  .subject('System Notification')
+  .text('Multiple recipients via method chaining.')
+  .send();
+```
+
 ## Scheduling Emails
 
 Schedule emails to be sent at a future date and time:
@@ -122,6 +150,56 @@ const result = await client.sendEmail({
 });
 ```
 
+## Managing Scheduled Emails
+
+### Canceling Scheduled Emails
+
+Cancel scheduled emails before they're sent:
+
+```javascript
+// Cancel a single email
+const cancelResult = await client.cancelEmail('email-id-123');
+
+if (cancelResult.success) {
+  console.log('Email cancelled successfully!');
+  console.log('Previous status:', cancelResult.data.previous_status);
+  console.log('Current status:', cancelResult.data.current_status);
+}
+
+// Cancel multiple emails at once
+const emailIds = ['id-1', 'id-2', 'id-3'];
+const bulkResult = await client.cancelEmails(emailIds);
+
+if (bulkResult.success) {
+  console.log(`Cancelled ${bulkResult.data.success_count} emails`);
+  console.log(`Failed to cancel ${bulkResult.data.error_count} emails`);
+}
+```
+
+### Updating Scheduled Emails
+
+Modify scheduled emails before they're sent:
+
+```javascript
+// Update email content
+const updateResult = await client.updateScheduledEmail('email-id-123', {
+  subject: 'Updated: Meeting Postponed',
+  body_text: 'The meeting has been moved to next week.',
+  body_html: '<p><strong>Updated:</strong> The meeting has been moved to next week.</p>'
+});
+
+// Reschedule an email
+await client.updateScheduledEmail('email-id-456', {
+  scheduled_at: new Date(Date.now() + 7200000) // Send in 2 hours instead
+});
+
+// Convert scheduled email to immediate send
+await client.updateScheduledEmail('email-id-789', {
+  scheduled_at: null, // Send immediately
+  subject: 'Urgent: Sending Now!'
+});
+```
+
 ## Environment Configuration
 
 For production applications, use environment variables for your API key:
@@ -137,7 +215,6 @@ import Mailblock from 'mailblock';
 
 const client = new Mailblock(process.env.MAILBLOCK_API_KEY);
 ```
-
 
 ## Debug Mode
 
@@ -168,18 +245,38 @@ Debug logs include:
 The SDK includes full TypeScript support out of the box:
 
 ```typescript
-import Mailblock, { EmailOptions, EmailResponse } from 'mailblock';
+import Mailblock, { 
+  EmailOptions, 
+  EmailResponse, 
+  CancelEmailResponse, 
+  UpdateEmailOptions 
+} from 'mailblock';
 
 const client: Mailblock = new Mailblock('your-api-key');
 
+// Send email with full type safety
 const emailOptions: EmailOptions = {
-  to: 'recipient@example.com',
+  to: ['recipient@example.com', 'user2@example.com'],
+  cc: 'manager@example.com',
+  bcc: ['audit@example.com'],
   from: 'sender@yourdomain.com',
   subject: 'TypeScript Email',
   text: 'This email was sent with full type safety!'
 };
 
 const result: EmailResponse = await client.sendEmail(emailOptions);
+
+// Cancel email with typed response
+const cancelResult: CancelEmailResponse = await client.cancelEmail('email-id');
+
+// Update email with typed options
+const updates: UpdateEmailOptions = {
+  subject: 'Updated Subject',
+  body_text: 'New content',
+  scheduled_at: new Date(Date.now() + 3600000)
+};
+
+await client.updateScheduledEmail('email-id', updates);
 ```
 
 ## Error Handling
@@ -213,5 +310,5 @@ Now that you've sent your first email, you might want to:
 
 ## Need Help?
 
-- 💬 [GitHub Issues](https://github.com/blockf0rge/mailblock-sdk/issues)
+- 💬 [GitHub Issues](https://github.com/5ysc4ll/mailblock/issues)
 - 📧 Email support: [contact@block-forge.de](mailto:contact@block-forge.de)
