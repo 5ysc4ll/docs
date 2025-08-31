@@ -28,7 +28,8 @@
             "icon": "code",
             "pages": [
               "SDK/overview",
-              "quickstart"
+              "quickstart",
+              "SDK/python"
             ]
           }
         ]
