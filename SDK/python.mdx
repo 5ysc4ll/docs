@@ -1,7 +1,517 @@
 ---
-title: 'Python'
-description: 'Description of your new file.'
+title: 'Python - Getting Started'
+description: 'This is our getting started to our Python SDK'
 icon: "/python-logo.png"
 ---
 
-Some python Stuff
+# Python - Getting Started
+
+This guide will help you get up and running with the Mailblock Python SDK in just a few minutes.
+
+## Prerequisites
+
+- Python 3.8 or higher
+- A Mailblock API key from [MailBlock](https://mailblock.com)
+
+## Installation
+
+Install the SDK using pip:
+
+```bash
+pip install mailblock
+```
+
+For async support:
+
+```bash
+pip install mailblock[async]
+```
+
+For development with all tools:
+
+```bash
+pip install mailblock[dev]
+```
+
+## Basic Setup
+
+First follow the steps from: Basic Setup
+
+Import and initialize the SDK with your API key:
+
+```python
+from mailblock import MailBlock
+
+client = MailBlock('your-api-key-here')
+```
+
+## Sending Your First Email
+
+Here's how to send a simple email:
+
+```python
+response = client.send_email_sync({
+    'to': 'recipient@example.com',
+    'from_email': 'sender@yourdomain.com',  # Note: 'from_email' in Python
+    'subject': 'Hello from Mailblock!',
+    'text': 'This is my first email using the Mailblock Python SDK.'
+})
+
+if response.success:
+    print('Email sent successfully!')
+    print('Email ID:', response.data['id'])
+else:
+    print('Failed to send email:', response.error)
+```
+
+## Using Method Chaining
+
+The SDK also supports a fluent, chainable API:
+
+```python
+response = client.email() \
+    .to('recipient@example.com') \
+    .from_email('sender@yourdomain.com') \
+    .subject('Hello from Mailblock!') \
+    .text('This email was sent using method chaining.') \
+    .send_sync()
+```
+
+For async operations:
+
+```python
+import asyncio
+
+async def send_email():
+    response = await client.email() \
+        .to('recipient@example.com') \
+        .from_email('sender@yourdomain.com') \
+        .subject('Hello from Mailblock!') \
+        .text('This email was sent using async method chaining.') \
+        .send()
+    return response
+
+# Run async function
+response = asyncio.run(send_email())
+```
+
+## Sending HTML Emails
+
+You can send rich HTML emails instead of plain text:
+
+```python
+response = client.send_email_sync({
+    'to': 'recipient@example.com',
+    'from_email': 'sender@yourdomain.com',
+    'subject': 'Welcome to Our Service',
+    'html': '''
+        <h1>Welcome!</h1>
+        <p>Thanks for signing up. We're excited to have you on board.</p>
+        <a href="https://yoursite.com/dashboard">Get Started</a>
+    '''
+})
+```
+
+Or with method chaining:
+
+```python
+response = client.email() \
+    .to('recipient@example.com') \
+    .from_email('sender@yourdomain.com') \
+    .subject('Welcome to Our Service') \
+    .html('<h1>Welcome!</h1><p>Thanks for signing up!</p>') \
+    .send_sync()
+```
+
+## Sending to Multiple Recipients
+
+Send emails to multiple people with CC and BCC support:
+
+```python
+from mailblock import EmailData
+
+# Using direct email data
+email_data = EmailData(
+    to=['user1@example.com', 'user2@example.com'],
+    cc='manager@example.com',
+    bcc=['audit@example.com', 'admin@example.com'],
+    from_email='sender@yourdomain.com',
+    subject='Team Update',
+    text='This email goes to multiple recipients.'
+)
+
+response = client.send_email_sync(email_data)
+```
+
+You can also use method chaining with multiple recipients:
+
+```python
+response = client.email() \
+    .to(['primary@example.com', 'secondary@example.com']) \
+    .cc('supervisor@example.com') \
+    .bcc(['audit@example.com']) \
+    .from_email('system@yourdomain.com') \
+    .subject('System Notification') \
+    .text('Multiple recipients via method chaining.') \
+    .send_sync()
+```
+
+## Scheduling Emails
+
+Schedule emails to be sent at a future date and time:
+
+```python
+from datetime import datetime, timedelta
+
+# Schedule email for 1 hour from now
+scheduled_time = datetime.now() + timedelta(hours=1)
+
+response = client.send_email_sync({
+    'to': 'recipient@example.com',
+    'from_email': 'sender@yourdomain.com',
+    'subject': 'Scheduled Email',
+    'text': 'This email was scheduled to be sent later.',
+    'scheduled_at': scheduled_time
+})
+
+if response.success:
+    print('Email scheduled successfully!')
+```
+
+You can also use ISO date strings:
+
+```python
+response = client.email() \
+    .to('recipient@example.com') \
+    .from_email('sender@yourdomain.com') \
+    .subject('Scheduled Email') \
+    .text('This email was scheduled using an ISO string.') \
+    .schedule_at('2024-12-25T09:00:00.000Z') \
+    .send_sync()
+```
+
+## Managing Scheduled Emails
+
+### Canceling Scheduled Emails
+
+Cancel scheduled emails before they're sent:
+
+```python
+# Cancel a single email
+cancel_response = client.cancel_email_sync('email-id-123')
+
+if cancel_response.success:
+    print('Email cancelled successfully!')
+    print('Previous status:', cancel_response.data['previous_status'])
+    print('Current status:', cancel_response.data['current_status'])
+
+# Cancel multiple emails at once
+email_ids = ['id-1', 'id-2', 'id-3']
+bulk_response = client.cancel_emails_sync(email_ids)
+
+if bulk_response.success:
+    print(f"Cancelled {bulk_response.data['success_count']} emails")
+    print(f"Failed to cancel {bulk_response.data['error_count']} emails")
+```
+
+For async operations:
+
+```python
+import asyncio
+
+async def cancel_emails():
+    # Cancel single email
+    response = await client.cancel_email('email-id-123')
+    
+    # Cancel multiple emails
+    bulk_response = await client.cancel_emails(['id-1', 'id-2', 'id-3'])
+    
+    return response, bulk_response
+
+responses = asyncio.run(cancel_emails())
+```
+
+### Updating Scheduled Emails
+
+Modify scheduled emails before they're sent:
+
+```python
+from mailblock import UpdateEmailData
+from datetime import datetime, timedelta
+
+# Update email content
+updates = UpdateEmailData(
+    subject='Updated: Meeting Postponed',
+    body_text='The meeting has been moved to next week.',
+    body_html='<p><strong>Updated:</strong> The meeting has been moved to next week.</p>'
+)
+
+update_response = client.update_scheduled_email_sync('email-id-123', updates)
+
+# Reschedule an email
+reschedule_updates = UpdateEmailData(
+    scheduled_at=datetime.now() + timedelta(hours=2)  # Send in 2 hours instead
+)
+
+await client.update_scheduled_email_sync('email-id-456', reschedule_updates)
+
+# Convert scheduled email to immediate send
+immediate_updates = UpdateEmailData(
+    scheduled_at=None,  # Send immediately
+    subject='Urgent: Sending Now!'
+)
+
+client.update_scheduled_email_sync('email-id-789', immediate_updates)
+```
+
+## Environment Configuration
+
+For production applications, use environment variables for your API key:
+
+```bash
+# .env file
+MAILBLOCK_API_KEY=your-api-key-here
+```
+
+```python
+import os
+from mailblock import MailBlock
+
+# Your application
+client = MailBlock(os.environ['MAILBLOCK_API_KEY'])
+```
+
+## Debug Mode
+
+Enable debug mode during development to see detailed logs:
+
+```python
+from mailblock import MailBlock
+
+client = MailBlock('your-api-key', debug=True)
+
+# Now you'll see detailed logs for all API calls
+response = client.email() \
+    .to('test@example.com') \
+    .from_email('sender@yourdomain.com') \
+    .subject('Debug Test') \
+    .text('Testing with debug mode enabled') \
+    .send_sync()
+```
+
+Debug logs include:
+- Request details and timing
+- API responses  
+- Error information
+- Performance metrics
+
+## Custom Logger
+
+You can also provide your own logger:
+
+```python
+import logging
+from mailblock import MailBlock
+
+# Set up custom logger
+logger = logging.getLogger("my_app.mailblock")
+logger.setLevel(logging.DEBUG)
+
+handler = logging.FileHandler("email.log")
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+
+# Use custom logger
+client = MailBlock('your-api-key', debug=True, logger=logger)
+```
+
+## Type Safety Support
+
+The SDK includes full type hints and works great with mypy:
+
+```python
+from mailblock import (
+    MailBlock, 
+    EmailData, 
+    APIResponse, 
+    UpdateEmailData,
+    ValidationError
+)
+from typing import List
+
+client: MailBlock = MailBlock('your-api-key')
+
+# Send email with full type safety
+email_data: EmailData = EmailData(
+    to=['recipient@example.com', 'user2@example.com'],
+    cc='manager@example.com', 
+    bcc=['audit@example.com'],
+    from_email='sender@yourdomain.com',
+    subject='Python Email with Type Safety',
+    text='This email was sent with full type safety!'
+)
+
+response: APIResponse = client.send_email_sync(email_data)
+
+# Update email with typed options
+updates: UpdateEmailData = UpdateEmailData(
+    subject='Updated Subject',
+    body_text='New content',
+    scheduled_at=datetime.now() + timedelta(hours=1)
+)
+
+update_response: APIResponse = client.update_scheduled_email_sync('email-id', updates)
+```
+
+## Context Manager Support
+
+Use the SDK with context managers for proper resource cleanup:
+
+```python
+from mailblock import MailBlock
+
+# Ensures proper cleanup of resources
+with MailBlock('your-api-key') as client:
+    response = client.email() \
+        .to('recipient@example.com') \
+        .from_email('sender@example.com') \
+        .subject('Context Manager Test') \
+        .text('This uses proper resource management.') \
+        .send_sync()
+```
+
+## Error Handling
+
+The SDK uses a consistent response format and exception hierarchy:
+
+```python
+from mailblock import ValidationError, AuthenticationError, RateLimitError
+
+try:
+    response = client.email() \
+        .to('invalid-email') \
+        .from_email('sender@example.com') \
+        .subject('Test') \
+        .text('Test content') \
+        .send_sync()
+
+except ValidationError as e:
+    print(f"Validation error: {e}")
+    print(f"Error type: {e.error_type}")
+    print(f"Suggestion: {e.suggestion}")
+    print(f"Request ID: {e.request_id}")
+
+except AuthenticationError as e:
+    print(f"Authentication failed: {e}")
+    print(f"Request ID: {e.request_id}")
+
+except RateLimitError as e:
+    print(f"Rate limited: {e}")
+    print(f"Suggestion: {e.suggestion}")
+
+except Exception as e:
+    print(f"Unexpected error: {e}")
+```
+
+You can also check response objects:
+
+```python
+response = client.email() \
+    .to('test@example.com') \
+    .from_email('sender@example.com') \
+    .subject('Test') \
+    .text('Test message') \
+    .send_sync()
+
+if not response.success:
+    print('Error Type:', response.error_type)
+    print('Error Message:', response.error)
+    print('Suggestion:', response.suggestion)
+    print('Request ID:', response.request_id)
+    print('Status Code:', response.status_code)
+```
+
+## Advanced Usage
+
+### Bulk Email Sending
+
+Send multiple emails efficiently with async:
+
+```python
+import asyncio
+
+async def send_bulk_emails():
+    recipients = [
+        "user1@example.com",
+        "user2@example.com", 
+        "user3@example.com"
+    ]
+    
+    # Send emails concurrently
+    tasks = []
+    for recipient in recipients:
+        task = client.email() \
+            .to(recipient) \
+            .from_email("bulk@example.com") \
+            .subject("Bulk Email") \
+            .text(f"Personal email for {recipient}") \
+            .send()
+        tasks.append(task)
+    
+    responses = await asyncio.gather(*tasks, return_exceptions=True)
+    
+    for i, response in enumerate(responses):
+        if isinstance(response, Exception):
+            print(f"Email {i+1} failed: {response}")
+        elif response.success:
+            print(f"Email {i+1} sent successfully")
+        else:
+            print(f"Email {i+1} failed: {response.error}")
+
+asyncio.run(send_bulk_emails())
+```
+
+### Installation Options
+
+Install specific extras based on your needs:
+
+```bash
+# Basic installation
+pip install mailblock
+
+# With async support  
+pip install mailblock[async]
+
+# Development installation with all tools
+pip install mailblock[dev]
+
+# All extras
+pip install mailblock[async,dev]
+```
+
+## Next Steps
+
+Now that you've sent your first email with Python, you might want to:
+
+- Explore the full API reference
+- See more examples
+- Learn about advanced error handling  
+- Check out async/await patterns
+- Set up proper logging for production
+
+## Need Help?
+
+- 💬 [GitHub Issues](https://github.com/5ysc4ll/python-sdk/issues)
+- 📧 Email support: contact@block-forge.de
+- 📚 [Full Documentation](https://docs.mailblock.com/python)
+- 🐍 [PyPI Package](https://pypi.org/project/mailblock/)
+
+## Key Differences from Node.js
+
+- Use `from_email` instead of `from` (Python keyword conflict)
+- Use `send_sync()` for synchronous operations, `send()` for async
+- Import specific classes: `from mailblock import MailBlock, EmailData`
+- Exception handling with try/catch using Python exception classes
+- Context managers supported with `with` statement
+- Full type hints support for IDEs and mypy
