@@ -3,7 +3,6 @@ title: 'Python - Getting Started'
 description: 'This is our getting started to our Python SDK'
 icon: "/python-logo.png"
 ---
-
 # Python - Getting Started
 
 This guide will help you get up and running with the Mailblock Python SDK in just a few minutes.
@@ -47,21 +46,36 @@ client = MailBlock('your-api-key-here')
 
 ## Sending Your First Email
 
-Here's how to send a simple email:
+Here's how to send a simple email using the fluent builder pattern:
 
 ```python
-response = client.send_email_sync({
-    'to': 'recipient@example.com',
-    'from_email': 'sender@yourdomain.com',  # Note: 'from_email' in Python
-    'subject': 'Hello from Mailblock!',
-    'text': 'This is my first email using the Mailblock Python SDK.'
-})
+response = client.email() \
+    .to('recipient@example.com') \
+    .from_email('sender@yourdomain.com') \
+    .subject('Hello from Mailblock!') \
+    .text('This is my first email using the Mailblock Python SDK.') \
+    .send_sync()
 
 if response.success:
     print('Email sent successfully!')
     print('Email ID:', response.data['id'])
 else:
     print('Failed to send email:', response.error)
+```
+
+Alternatively, you can use the `EmailData` class directly:
+
+```python
+from mailblock import EmailData
+
+email_data = EmailData(
+    to='recipient@example.com',
+    from_email='sender@yourdomain.com',
+    subject='Hello from Mailblock!',
+    text='This is my first email using the Mailblock Python SDK.'
+)
+
+response = client.send_email_sync(email_data)
 ```
 
 ## Using Method Chaining
@@ -100,16 +114,35 @@ response = asyncio.run(send_email())
 You can send rich HTML emails instead of plain text:
 
 ```python
-response = client.send_email_sync({
-    'to': 'recipient@example.com',
-    'from_email': 'sender@yourdomain.com',
-    'subject': 'Welcome to Our Service',
-    'html': '''
+response = client.email() \
+    .to('recipient@example.com') \
+    .from_email('sender@yourdomain.com') \
+    .subject('Welcome to Our Service') \
+    .html('''
+        <h1>Welcome!</h1>
+        <p>Thanks for signing up. We're excited to have you on board.</p>
+        <a href="https://yoursite.com/dashboard">Get Started</a>
+    ''') \
+    .send_sync()
+```
+
+Or using `EmailData`:
+
+```python
+from mailblock import EmailData
+
+email_data = EmailData(
+    to='recipient@example.com',
+    from_email='sender@yourdomain.com',
+    subject='Welcome to Our Service',
+    html='''
         <h1>Welcome!</h1>
         <p>Thanks for signing up. We're excited to have you on board.</p>
         <a href="https://yoursite.com/dashboard">Get Started</a>
     '''
-})
+)
+
+response = client.send_email_sync(email_data)
 ```
 
 Or with method chaining:
@@ -166,16 +199,33 @@ from datetime import datetime, timedelta
 # Schedule email for 1 hour from now
 scheduled_time = datetime.now() + timedelta(hours=1)
 
-response = client.send_email_sync({
-    'to': 'recipient@example.com',
-    'from_email': 'sender@yourdomain.com',
-    'subject': 'Scheduled Email',
-    'text': 'This email was scheduled to be sent later.',
-    'scheduled_at': scheduled_time
-})
+response = client.email() \
+    .to('recipient@example.com') \
+    .from_email('sender@yourdomain.com') \
+    .subject('Scheduled Email') \
+    .text('This email was scheduled to be sent later.') \
+    .schedule_at(scheduled_time) \
+    .send_sync()
 
 if response.success:
     print('Email scheduled successfully!')
+```
+
+Or using `EmailData`:
+
+```python
+from mailblock import EmailData
+from datetime import datetime, timedelta
+
+email_data = EmailData(
+    to='recipient@example.com',
+    from_email='sender@yourdomain.com',
+    subject='Scheduled Email',
+    text='This email was scheduled to be sent later.',
+    scheduled_at=datetime.now() + timedelta(hours=1)
+)
+
+response = client.send_email_sync(email_data)
 ```
 
 You can also use ISO date strings:
